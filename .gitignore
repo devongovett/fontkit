@@ -6,6 +6,8 @@ coverage.html
 data.trie
 /index.js
 /base.js
+/browser.js
+/browser.min.js
 *.js.map
 use.trie
 use.json

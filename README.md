@@ -229,6 +229,10 @@ Adds a bezier curve to the path from the current point to the given x, y coordin
 
 Closes the current sub-path by drawing a straight line back to the starting point.
 
+### `path.drawPoints(path)`
+
+Draws the points in the path to another path-like object.
+
 ### `path.toFunction()`
 
 Compiles the path to a JavaScript function that can be applied with a graphics context in order to render the path.

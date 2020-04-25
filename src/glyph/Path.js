@@ -176,6 +176,16 @@ export default class Path {
   }
 
   /**
+   * Draw the points in the path to another path-like object.
+   * @param {Path} path
+   */
+  drawPoints(path) {
+    for (let c of this.commands) {
+      path[c.command](...c.args);
+    }
+  }
+
+  /**
    * Applies a mapping function to each point in the path.
    * @param {function} fn
    * @return {Path}

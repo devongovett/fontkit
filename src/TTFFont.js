@@ -75,7 +75,7 @@ export default class TTFFont {
   }
 
   _decodeDirectory() {
-    return this.directory = Directory.decode(this.stream, {_startOffset: 0});
+    return this.directory = Directory.decode(this.stream, { _startOffset: 0 });
   }
 
   _decodeTable(table) {
@@ -98,12 +98,12 @@ export default class TTFFont {
     if (record) {
       // Attempt to retrieve the entry, depending on which translation is available:
       return (
-          record[lang]
-          || record[this.defaultLanguage]
-          || record[fontkit.defaultLanguage]
-          || record['en']
-          || record[Object.keys(record)[0]] // Seriously, ANY language would be fine
-          || null
+        record[lang]
+        || record[this.defaultLanguage]
+        || record[fontkit.defaultLanguage]
+        || record['en']
+        || record[Object.keys(record)[0]] // Seriously, ANY language would be fine
+        || null
       );
     }
 
@@ -415,6 +415,8 @@ export default class TTFFont {
         this._getBaseGlyph(glyph, characters);
       }
     }
+    if (this._glyphs[glyph] && this._glyphs[glyph].codePoints.length === 0)
+      this._glyphs[glyph].codePoints = characters;
 
     return this._glyphs[glyph] || null;
   }

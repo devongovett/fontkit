@@ -4,8 +4,16 @@ import fs from 'fs';
 
 describe('variations', function() {
   describe('Skia', function() {
-    if (!fs.existsSync('/Library/Fonts/Skia.ttf')) { return; }
-    let font = fontkit.openSync('/Library/Fonts/Skia.ttf');
+    let font;
+    if (fs.existsSync('/Library/Fonts/Skia.ttf')) {
+      font = fontkit.openSync('/Library/Fonts/Skia.ttf');
+    }
+
+    beforeEach(function() {
+      if (!font) {
+        this.skip();
+      }
+    });
 
     it('should get available variation axes', function() {
       let axes = font.variationAxes;

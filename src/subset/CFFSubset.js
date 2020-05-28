@@ -55,6 +55,7 @@ export default class CFFSubset extends Subset {
 
     let used_fds = {};
     let used_subrs = [];
+    let fd_select = {};
     for (let gid of this.glyphs) {
       let fd = this.cff.fdForGlyph(gid);
       if (fd == null) {
@@ -64,15 +65,16 @@ export default class CFFSubset extends Subset {
       if (!used_fds[fd]) {
         topDict.FDArray.push(Object.assign({}, this.cff.topDict.FDArray[fd]));
         used_subrs.push({});
+        fd_select[fd] = topDict.FDArray.length - 1;
       }
 
       used_fds[fd] = true;
-      topDict.FDSelect.fds.push(topDict.FDArray.length - 1);
+      topDict.FDSelect.fds.push(fd_select[fd]);
 
       let glyph = this.font.getGlyph(gid);
       let path = glyph.path; // this causes the glyph to be parsed
       for (let subr in glyph._usedSubrs) {
-        used_subrs[used_subrs.length - 1][subr] = true;
+        used_subrs[fd_select[fd]][subr] = true;
       }
     }
 

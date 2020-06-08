@@ -12,3 +12,6 @@ use.json
 .nyc_output
 indic.trie
 indic.json
+/base.es5.js
+/index.browser.js
+/index.es5.js

@@ -183,6 +183,7 @@ You do not create glyph objects directly. They are created by various methods on
 ### Properties
 
 * `id` - the glyph id in the font
+* `name` - the glyph name in the font
 * `codePoints` - an array of unicode code points that are represented by this glyph. There can be multiple code points in the case of ligatures and other glyphs that represent multiple visual characters.
 * `path` - a vector Path object representing the glyph
 * `bbox` - the glyph’s bounding box, i.e. the rectangle that encloses the glyph outline as tightly as possible.

@@ -33,8 +33,13 @@ export let ScriptList = new r.Array(ScriptRecord, r.uint16);
 // Features and Lookups #
 //#######################
 
+let FeatureParams = new r.Struct({
+  version:    r.uint16, // should be set to 0 according OT spec
+  nameID:     r.uint16, //OT spec: UI Name ID or uiLabelNameId
+});
+
 export let Feature = new r.Struct({
-  featureParams:      r.uint16, // pointer
+  featureParams:      0 === r.uint16 ? 0 : new r.Pointer(r.uint16, FeatureParams),
   lookupCount:        r.uint16,
   lookupListIndexes:  new r.Array(r.uint16, 'lookupCount')
 });
